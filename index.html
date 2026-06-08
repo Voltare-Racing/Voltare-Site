@@ -1,0 +1,1032 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>VOLTARE Racing — Identity</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Black+Han+Sans&family=Permanent+Marker&family=Oswald:wght@700&display=swap');
+
+  :root {
+    --pink: #FF0099;
+    --pink-light: #FF44BB;
+    --pink-glow: #FF009966;
+    --black: #0A0A0A;
+    --white: #F5F5F0;
+    --yellow: #FFE000;
+    --star-size: 24px;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: var(--black);
+    color: var(--white);
+    font-family: 'Bebas Neue', sans-serif;
+    overflow-x: hidden;
+  }
+
+  /* ---- NOISE OVERLAY ---- */
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+    pointer-events: none;
+    z-index: 9999;
+    opacity: 0.5;
+  }
+
+  /* ---- PAGE 1: LOGO HERO ---- */
+  .page {
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .page-hero {
+    background: var(--black);
+    justify-content: center;
+    align-items: center;
+    padding: 60px 40px;
+  }
+
+  .hero-inner {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0;
+    z-index: 2;
+  }
+
+  .starburst-bg {
+    position: absolute;
+    width: 600px;
+    height: 600px;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    opacity: 0.07;
+    pointer-events: none;
+  }
+
+  .tagline-top {
+    font-family: 'Permanent Marker', cursive;
+    font-size: 1.1rem;
+    color: var(--pink);
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+    animation: fadeIn 0.6s ease both;
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  /* Correção: Garantir que o raio inline não seja esmagado ou cortado pelas caixas */
+  .inline-bolt {
+    width: 16px;
+    height: 24px;
+    fill: currentColor;
+    display: inline-block;
+    vertical-align: middle;
+    flex-shrink: 0;
+    overflow: visible;
+  }
+
+  .logo-block {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    line-height: 0.88;
+    position: relative;
+  }
+
+  /* Correção: transform-origin e overflow para rotacionar perfeitamente no próprio eixo */
+  .logo-star-svg {
+    width: 80px;
+    height: 80px;
+    fill: var(--pink);
+    animation: spinStar 8s linear infinite;
+    display: inline-block;
+    margin-bottom: 10px;
+    transform-origin: center;
+    overflow: visible;
+  }
+
+  @keyframes spinStar {
+    from { transform: rotate(0deg) scale(1); }
+    50% { transform: rotate(180deg) scale(1.15); }
+    to { transform: rotate(360deg) scale(1); }
+  }
+
+  .logo-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(5rem, 18vw, 10rem);
+    color: var(--white);
+    letter-spacing: -2px;
+    line-height: 1;
+    text-shadow: 
+      4px 4px 0 var(--pink),
+      8px 8px 0 #000;
+    position: relative;
+    z-index: 2;
+  }
+
+  .logo-name span {
+    color: var(--pink);
+    -webkit-text-stroke: 2px var(--pink);
+  }
+
+  .logo-sub {
+    font-family: 'Oswald', sans-serif;
+    font-size: clamp(1rem, 4vw, 1.8rem);
+    color: var(--white);
+    letter-spacing: 12px;
+    margin-top: 15px;
+    border-top: 3px solid var(--pink);
+    border-bottom: 3px solid var(--pink);
+    padding: 6px 20px;
+    text-transform: uppercase;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .logo-sub em {
+    color: var(--pink);
+    font-style: normal;
+    display: flex;
+    align-items: center;
+  }
+
+  .badge-electric {
+    margin-top: 20px;
+    background: var(--pink);
+    color: var(--black);
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.3rem;
+    letter-spacing: 4px;
+    padding: 6px 24px;
+    transform: rotate(-2deg);
+    box-shadow: 4px 4px 0 var(--white);
+    animation: wiggle 3s ease-in-out infinite;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  @keyframes wiggle {
+    0%, 100% { transform: rotate(-2deg); }
+    50% { transform: rotate(2deg); }
+  }
+
+  /* Container dos raios flutuantes */
+  .float-stars {
+    position: absolute;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+  }
+
+  .fstar-svg {
+    position: absolute;
+    width: 25px;
+    height: 40px;
+    animation: floatUp var(--dur, 6s) ease-in-out infinite;
+    animation-delay: var(--delay, 0s);
+    opacity: 0.6;
+  }
+
+  @keyframes floatUp {
+    0%, 100% { transform: translateY(0) rotate(0deg); opacity: 0.4; }
+    50% { transform: translateY(-20px) rotate(15deg); opacity: 0.8; }
+  }
+
+  /* ---- PAGE 2: POSTER ---- */
+  .page-poster {
+    background: var(--black);
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding: 0;
+    min-height: auto;
+    gap: 0;
+  }
+
+  .poster-main {
+    flex: 1;
+    min-width: 300px;
+    background: var(--black);
+    padding: 48px 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    border-right: 4px solid var(--pink);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .poster-main::after {
+    content: '';
+    position: absolute;
+    width: 300px;
+    height: 500px;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 42'%3E%3Cpolygon points='14,2 2,22 11,22 8,40 22,18 13,18' fill='%23FF0099'/%3E%3C/svg%3E");
+    background-repeat: no-repeat;
+    background-size: contain;
+    opacity: 0.03;
+    right: -50px;
+    bottom: -100px;
+    pointer-events: none;
+  }
+
+  .poster-eyebrow {
+    font-family: 'Permanent Marker', cursive;
+    font-size: 1rem;
+    color: var(--pink);
+    letter-spacing: 4px;
+    margin-bottom: 12px;
+  }
+
+  .poster-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(3.5rem, 9vw, 7rem);
+    line-height: 0.9;
+    color: var(--white);
+    text-shadow: 6px 6px 0 var(--pink);
+    z-index: 2;
+    position: relative;
+  }
+
+  .poster-desc {
+    font-family: 'Oswald', sans-serif;
+    font-size: 1rem;
+    letter-spacing: 3px;
+    color: #888;
+    text-transform: uppercase;
+    margin-top: 20px;
+    z-index: 2;
+    position: relative;
+    max-width: 600px;
+    line-height: 1.6;
+  }
+
+  /* ---- BLOCOS DE CONTEÚDO ---- */
+  .info-containers {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    margin-top: 40px;
+    z-index: 2;
+    position: relative;
+    width: 100%;
+  }
+
+  .info-box {
+    flex: 1;
+    min-width: 280px;
+    padding: 30px;
+    font-family: 'Oswald', sans-serif;
+    line-height: 1.6;
+  }
+
+  .info-box-black {
+    background: var(--black);
+    border: 3px solid var(--pink);
+    color: var(--white);
+  }
+
+  .info-box-pink {
+    background: var(--pink);
+    color: var(--black);
+  }
+
+  .info-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.8rem;
+    letter-spacing: 2px;
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-transform: uppercase;
+  }
+
+  .info-title::before {
+    content: '→';
+    font-family: sans-serif;
+  }
+
+  .info-text {
+    font-size: 1rem;
+    letter-spacing: 1px;
+    font-weight: normal;
+  }
+
+  /* ---- CAR SVG SECTION ---- */
+  .car-section {
+    background: var(--black);
+    padding: 60px 40px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    overflow: hidden;
+    border-top: 4px solid var(--pink);
+  }
+
+  .section-label {
+    font-family: 'Permanent Marker', cursive;
+    font-size: 1rem;
+    color: var(--pink);
+    letter-spacing: 6px;
+    text-transform: uppercase;
+    margin-bottom: 16px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  .section-title {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: clamp(3rem, 8vw, 6rem);
+    line-height: 0.9;
+    text-align: center;
+    margin-bottom: 40px;
+    color: var(--white);
+  }
+
+  .section-title .acc {
+    color: var(--pink);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    text-shadow: 3px 3px 0 #000;
+    margin-top: 10px;
+  }
+
+  .car-wrap {
+    width: 100%;
+    max-width: 900px;
+    position: relative;
+  }
+
+  .car-glow {
+    position: absolute;
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 80%;
+    height: 40px;
+    background: var(--pink);
+    filter: blur(40px);
+    opacity: 0.5;
+    border-radius: 50%;
+  }
+
+  /* ---- COLOR PALETTE ---- */
+  .palette-section {
+    padding: 60px 40px;
+    border-top: 4px solid var(--pink);
+    background: var(--black);
+  }
+  
+  .palette-section .section-label {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+  .palette-title-wrap {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .palette-grid {
+    display: flex;
+    gap: 0;
+    margin-top: 30px;
+    flex-wrap: wrap;
+  }
+
+  .swatch {
+    flex: 1;
+    min-width: 120px;
+    height: 200px;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    padding: 16px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .swatch-bolt-bg {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    width: 40px;
+    height: 60px;
+    fill: currentColor;
+    opacity: 0.15;
+  }
+
+  .swatch-name {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.4rem;
+    letter-spacing: 2px;
+  }
+
+  .swatch-hex {
+    font-family: 'Permanent Marker', cursive;
+    font-size: 0.85rem;
+    opacity: 0.7;
+    margin-top: 2px;
+  }
+
+  /* ---- TYPOGRAPHY SECTION ---- */
+  .type-section {
+    padding: 60px 40px;
+    border-top: 4px solid var(--pink);
+    background: #0F0F0F;
+  }
+
+  .type-samples {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+    margin-top: 30px;
+  }
+
+  .type-sample {
+    border-left: 4px solid var(--pink);
+    padding-left: 20px;
+  }
+
+  .type-label {
+    font-family: 'Oswald', sans-serif;
+    font-size: 0.75rem;
+    letter-spacing: 4px;
+    color: #666;
+    text-transform: uppercase;
+    margin-bottom: 4px;
+  }
+
+  /* ---- STICKER SECTION ---- */
+  .sticker-section {
+    padding: 60px 40px;
+    border-top: 4px solid var(--pink);
+    background: var(--black);
+  }
+
+  .stickers-grid {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+    margin-top: 30px;
+    align-items: center;
+    justify-content: flex-start;
+  }
+
+  .sticker {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Bebas Neue', sans-serif;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    position: relative;
+    transition: transform 0.2s;
+  }
+
+  .sticker:hover {
+    transform: scale(1.05) rotate(-2deg);
+  }
+
+  .sticker-star {
+    width: 130px;
+    height: 130px;
+    background: var(--pink);
+    color: var(--black);
+    font-size: 1.1rem;
+    clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+    text-align: center;
+    flex-direction: column;
+  }
+
+  .sticker-rect {
+    background: var(--black);
+    border: 3px solid var(--pink);
+    color: var(--white);
+    padding: 10px 20px;
+    font-size: 1.2rem;
+    box-shadow: 4px 4px 0 var(--pink);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .sticker-rect.inv {
+    background: var(--pink);
+    color: var(--black);
+    border-color: var(--black);
+    box-shadow: 4px 4px 0 var(--white);
+  }
+
+  .sticker-round {
+    width: 120px;
+    height: 120px;
+    border-radius: 50%;
+    background: var(--white);
+    color: var(--black);
+    font-size: 0.85rem;
+    text-align: center;
+    flex-direction: column;
+    gap: 2px;
+    border: 4px solid var(--black);
+    box-shadow: 4px 4px 0 var(--pink);
+  }
+
+  .sticker-round .round-bolt {
+    width: 20px;
+    height: 30px;
+    fill: var(--pink);
+    margin-bottom: 2px;
+    flex-shrink: 0;
+    overflow: visible;
+  }
+
+  /* ---- FOOTER TICKER ---- */
+  .ticker-wrap {
+    border-top: 4px solid var(--pink);
+    border-bottom: 4px solid var(--pink);
+    background: var(--pink);
+    overflow: hidden;
+    padding: 12px 0;
+    white-space: nowrap;
+    display: flex;
+    align-items: center;
+  }
+
+  .ticker-inner {
+    display: inline-flex;
+    align-items: center;
+    animation: ticker 35s linear infinite;
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 1.4rem;
+    letter-spacing: 4px;
+    color: var(--black);
+    width: max-content;
+  }
+
+  /* Deixa o último letreiro mais lento e suave */
+  .ticker-slow {
+    animation: ticker 60s linear infinite !important;
+  }
+
+  /* Correção: Evitar corte nas pontas dos raios que se movem nos tickers */
+  .ticker-bolt {
+    width: 14px;
+    height: 22px;
+    fill: currentColor;
+    margin: 0 15px;
+    display: inline-block;
+    flex-shrink: 0;
+    overflow: visible;
+  }
+
+  @keyframes ticker {
+    from { transform: translate3d(0, 0, 0); }
+    to { transform: translate3d(-50%, 0, 0); }
+  }
+
+  @keyframes fadeIn {
+    from { opacity: 0; transform: translateY(10px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  /* ---- DIVIDER ---- */
+  .marquee-divider {
+    border-top: 2px solid #222;
+    border-bottom: 2px solid #222;
+    background: #111;
+    overflow: hidden;
+    padding: 10px 0;
+    white-space: nowrap;
+  }
+
+  .marquee-inner {
+    display: inline-block;
+    animation: ticker 35s linear infinite;
+    font-family: 'Oswald', sans-serif;
+    font-size: 0.8rem;
+    letter-spacing: 6px;
+    color: #444;
+    text-transform: uppercase;
+  }
+
+</style>
+</head>
+<body>
+
+<svg style="display:none;">
+  <g id="svg-bolt">
+    <path d="M14,2 L2,22 L11,22 L8,40 L22,18 L13,18 Z"/>
+  </g>
+</svg>
+
+<section class="page page-hero">
+  <div class="float-stars">
+    <svg class="fstar-svg" style="left:5%; top:10%; --dur:5s; --delay:0s; fill:var(--white);" viewBox="0 0 24 42"><use href="#svg-bolt"/></svg>
+    <svg class="fstar-svg" style="left:90%; top:15%; --dur:7s; --delay:1s; fill:var(--pink);" viewBox="0 0 24 42"><use href="#svg-bolt"/></svg>
+    <svg class="fstar-svg" style="left:15%; top:80%; --dur:6s; --delay:2s; fill:var(--white);" viewBox="0 0 24 42"><use href="#svg-bolt"/></svg>
+    <svg class="fstar-svg" style="left:85%; top:75%; --dur:8s; --delay:0.5s; fill:var(--pink);" viewBox="0 0 24 42"><use href="#svg-bolt"/></svg>
+    <svg class="fstar-svg" style="left:50%; top:5%; --dur:9s; --delay:3s; fill:var(--pink);" viewBox="0 0 24 42"><use href="#svg-bolt"/></svg>
+    <svg class="fstar-svg" style="left:30%; top:45%; --dur:5s; --delay:1.5s; fill:var(--white);" viewBox="0 0 24 42"><use href="#svg-bolt"/></svg>
+    <svg class="fstar-svg" style="left:70%; top:40%; --dur:7s; --delay:2.5s; fill:var(--pink);" viewBox="0 0 24 42"><use href="#svg-bolt"/></svg>
+  </div>
+
+  <div class="hero-inner">
+    <div class="tagline-top">
+      <svg class="inline-bolt" viewBox="0 0 24 42"><use href="#svg-bolt"/></svg>
+      Formula SAE Electric Team
+      <svg class="inline-bolt" viewBox="0 0 24 42"><use href="#svg-bolt"/></svg>
+    </div>
+
+    <div class="logo-block">
+      <svg class="logo-star-svg" viewBox="0 0 24 42"><use href="#svg-bolt"/></svg>
+      <div class="logo-name">VOLT<span>ARE</span></div>
+      <div class="logo-name" style="font-size: clamp(2rem, 7vw, 4rem); -webkit-text-stroke: 2px var(--white); color: transparent; text-shadow: none; letter-spacing: 8px;">RACING</div>
+    </div>
+
+    <div class="logo-sub">
+      <em><svg class="inline-bolt" style="width:12px; height:18px;" viewBox="0 0 24 42"><use href="#svg-bolt"/></svg></em> YOUR FAVORITE 
+      <em><svg class="inline-bolt" style="width:12px; height:18px;" viewBox="0 0 24 42"><use href="#svg-bolt"/></svg></em> RACE TEAM 
+      <em><svg class="inline-bolt" style="width:12px; height:18px;" viewBox="0 0 24 42"><use href="#svg-bolt"/></svg></em>
+    </div>
+    <div class="badge-electric">
+      <svg class="inline-bolt" style="width:14px; height:22px; fill:var(--black);" viewBox="0 0 24 42"><use href="#svg-bolt"/></svg>
+      ELECTRIC DIVISION
+      <svg class="inline-bolt" style="width:14px; height:22px; fill:var(--black);" viewBox="0 0 24 42"><use href="#svg-bolt"/></svg>
+    </div>
+  </div>
+</section>
+
+<div class="ticker-wrap">
+  <div class="ticker-inner">
+    VOLTARE RACING <svg class="ticker-bolt" viewBox="0 0 24 42"><use href="#svg-bolt"/></svg> 
+    FORMULA SAE ELECTRIC <svg class="ticker-bolt" viewBox="0 0 24 42"><use href="#svg-bolt"/></svg> 
+    RAISED ON HIGH VOLTAGE <svg class="ticker-bolt" viewBox="0 0 24 42"><use href="#svg-bolt"/></svg> 
+    VOLTARE RACING <svg class="ticker-bolt" viewBox="0 0 24 42"><use href="#svg-bolt"/></svg> 
+    FORMULA SAE ELECTRIC <svg class="ticker-bolt" viewBox="0 0 24 42"><use href="#svg-bolt"/></svg> 
+    RAISED ON HIGH VOLTAGE <svg class="ticker-bolt" viewBox="0 0 24 42"><use href="#svg-bolt"/></svg>
+    VOLTARE RACING <svg class="ticker-bolt" viewBox="0 0 24 42"><use href="#svg-bolt"/></svg> 
+    FORMULA SAE ELECTRIC <svg class="ticker-bolt" viewBox="0 0 24 42"><use href="#svg-bolt"/></svg> 
+    RAISED ON HIGH VOLTAGE <svg class="ticker-bolt" viewBox="0 0 24 42"><use href="#svg-bolt"/></svg> 
+    VOLTARE RACING <svg class="ticker-bolt" viewBox="0 0 24 42"><use href="#svg-bolt"/></svg> 
+    FORMULA SAE ELECTRIC <svg class="ticker-bolt" viewBox="0 0 24 42"><use href="#svg-bolt"/></svg> 
+    RAISED ON HIGH VOLTAGE <svg class="ticker-bolt" viewBox="0 0 24 42"><use href="#svg-bolt"/></svg>
+
+  </div>
+</div>
+
+<section class="page page-poster" style="min-height: auto;">
+  <div class="poster-main">
+    <div>
+      <div class="poster-title">
+        QUEM SOMOS<br>
+      </div>
+    </div>
+    <div>
+      <p class="poster-desc">A Voltare Racing é a equipe de Fórmula SAE Elétrica do Instituto Federal de Santa Catarina. Nascemos do desejo de transformar a teoria em alta performance — unindo engenharia, inovação e competição para levar o IFSC ao cenário nacional da engenharia aplicada.</p>
+      <div class="info-containers">
+        
+        <div class="info-box info-box-black">
+          <div class="info-title" style="color: var(--pink);">O que é a FSAE</div>
+          <p class="info-text">
+            A Fórmula SAE é uma competição de design de engenharia estudantil organizada pela SAE International. Os alunos concebem, projetam, fabricam e testam um veículo respeitando regras rigorosas de segurança e desempenho — avaliados em provas estáticas (projeto, custos e negócios) e provas dinâmicas na pista.
+          </p>
+        </div>
+
+        <div class="info-box info-box-pink">
+          <div class="info-title">Por que o IFSC</div>
+          <p class="info-text">
+            O projeto preenche a falta de atividades práticas de grande escala, integrando as engenheiras Elétrica, Eletrônica e Mecatrônica em um desafio real — simulando o funcionamento de uma empresa e aproximando os alunos do mercado.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+</section>
+<section class="page" style="min-height: auto; padding: 48px 40px; background: var(--black); border-top: 2px solid #222;">
+  
+  <div class="poster-title" style="font-size: clamp(2.5rem, 6vw, 4.5rem); text-shadow: 4px 4px 0 var(--pink); margin-bottom: 40px; width: 100%;">
+    ESTRUTURA E OBJETIVOS
+  </div>
+  
+  <div style="display: flex; flex-wrap: wrap; gap: 40px; width: 100%; font-family: 'Oswald', sans-serif; text-transform: uppercase; letter-spacing: 2px;">
+    
+    <div style="flex: 1; min-width: 280px;">
+      <div style="font-family: 'Bebas Neue', sans-serif; font-size: 2rem; color: var(--pink); margin-bottom: 15px; letter-spacing: 2px;">
+        → ÁREAS DA EQUIPE
+      </div>
+      <ul style="padding-left: 20px; color: var(--white); line-height: 1.8; font-size: 1.1rem; list-style-type: square;">
+        <li>Direção e Gestão</li>
+        <li>Powertrain e Tração</li>
+        <li>Alta Tensão e Baterias</li>
+        <li>Eletrônica e Controle</li>
+        <li>Chassi e Suspensão</li>
+        <li>Marketing e Financeiro</li>
+      </ul>
+    </div>
+
+    <div style="flex: 1; min-width: 280px;">
+      <div style="font-family: 'Bebas Neue', sans-serif; font-size: 2rem; color: var(--white); margin-bottom: 15px; letter-spacing: 2px;">
+        → BENEFÍCIOS PARA O IFSC
+      </div>
+      <ul style="padding-left: 20px; color: var(--white); line-height: 1.8; font-size: 1.1rem; list-style-type: square;">
+        <li style="margin-bottom: 12px;">Visibilidade nacional ao competir com as maiores universidades do Brasil</li>
+        <li style="margin-bottom: 12px;">Formação de profissionais com domínio de normas internacionais</li>
+        <li style="margin-bottom: 12px;">Ponte com o setor produtivo via patrocínios e parcerias estratégicas</li>
+      </ul>
+    </div>
+
+  </div>
+
+  <div style="width: 100%; border-top: 2px solid var(--pink); margin-top: 50px; padding-top: 20px;">
+    <p style="font-family: 'Oswald', sans-serif; font-size: 1.1rem; letter-spacing: 2px; text-transform: uppercase; color: var(--white); max-width: 100%; line-height: 1.6; text-align: center;">
+      O IFSC tem o potencial técnico. A Voltare transforma esse potencial em resultados concretos — em pista e fora dela.
+    </p>
+  </div>
+
+</section>
+<div class="marquee-divider">
+  <div class="marquee-inner">
+    VOLTARE RACING · HIGH VOLTAGE · FORMULA SAE · ELECTRIC · 2026 · VOLTARE RACING · HIGH VOLTAGE · FORMULA SAE · ELECTRIC · 2026 · VOLTARE RACING · HIGH VOLTAGE · FORMULA SAE · ELECTRIC · 2026 · VOLTARE RACING · HIGH VOLTAGE · FORMULA SAE · ELECTRIC · 2026 · VOLTARE RACING · HIGH VOLTAGE · FORMULA SAE · ELECTRIC · 2026 · VOLTARE RACING · HIGH VOLTAGE · FORMULA SAE · ELECTRIC · 2026 ·
+  </div>
+</div>
+
+<section class="page page-poster" style="min-height: auto;">
+  <div class="poster-main">
+    <div>
+      <div class="poster-title">
+        COMPETIÇÃO<br>
+      </div>
+    </div>
+    <div>
+      <p class="poster-desc">A FSAE Brasil é a maior e mais prestigia da competição de engenharia estudantil do país, organizada pela SAE Brasil seguindo padrões internacionais. Reúne as principais universidades e institutos federais, promovendo um intercâmbio tecnológico de alto nível entre equipes de todo o Brasil.</p>
+      
+      <div class="info-containers">
+        
+        <div class="info-box info-box-black">
+          <div class="info-title" style="color: var(--pink);">Provas Estáticas</div>
+          <p class="info-text">
+	As equipes apresentam e defendem seuprojeto perante juízes experientes daindústria. São avaliados o plano de negócios,a análise de custos e manufatura, e a consistência técnica do projeto — provando que o veículo é viável, seguro e economicamente justificável.
+          </p>
+        </div>
+
+        <div class="info-box info-box-pink">
+          <div class="info-title">Provas Dinâmicas</div>
+          <p class="info-text">
+            O carro prova seu valor na pista. As provas incluem aceleração, skidpad (curvas em oito), autocross (volta rápida) e o Endurance — prova de resistência de 22 km com troca de piloto, considerada o maior desafio da competição.
+          </p>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="marquee-divider">
+  <div class="marquee-inner">
+    VOLTARE RACING · HIGH VOLTAGE · FORMULA SAE · ELECTRIC · 2026 · VOLTARE RACING · HIGH VOLTAGE · FORMULA SAE · ELECTRIC · 2026 · VOLTARE RACING · HIGH VOLTAGE · FORMULA SAE · ELECTRIC · 2026 · VOLTARE RACING · HIGH VOLTAGE · FORMULA SAE · ELECTRIC · 2026 · VOLTARE RACING · HIGH VOLTAGE · FORMULA SAE · ELECTRIC · 2026 · VOLTARE RACING · HIGH VOLTAGE · FORMULA SAE · ELECTRIC · 2026 ·
+  </div>
+</div>
+
+<section class="car-section">
+ <div class="section-label">
+  <svg class="inline-bolt" style="width:14px; height:20px;" viewBox="0 0 24 42"><use href="#svg-bolt"/></svg> 
+  Machine 
+  <svg class="inline-bolt" style="width:14px; height:20px;" viewBox="0 0 24 42"><use href="#svg-bolt"/></svg>
+</div>
+
+<div class="section-title">
+  THE CAR
+  <span class="acc">
+    <svg class="inline-bolt" style="width:25px; height:35px; fill:var(--pink);" viewBox="0 0 24 42"><use href="#svg-bolt"/></svg> 
+    HERMES 
+    <svg class="inline-bolt" style="width:25px; height:35px; fill:var(--pink);" viewBox="0 0 24 42"><use href="#svg-bolt"/></svg>
+  </span>
+</div>
+
+  <p class="poster-desc" style="text-align: center; margin: 0 auto 40px auto; max-width: 800px; color: var(--white); font-family: 'Oswald', sans-serif;">
+    O primeiro veículo da Voltare Racing é um protótipo elétrico desenvolvido sob as regras da FSAE Electric — com foco em eficiência energética, segurança estrutural e simplicidade de fabricação, características essenciais para uma equipe em seu primeiro ciclo de desenvolvimento.
+  </p>
+
+ <div class="car-wrap" style="max-width: 950px; margin-bottom: 40px;">
+    
+    <svg width="100%" height="auto" viewBox="0 0 800 600" xmlns="http://www.w3.org/2000/svg" style="display: block; margin: 0 auto; z-index: 2; position: relative;" stroke="null">
+     <g id="Layer_1">
+      <title>Layer 1</title>
+      <line id="svg_29" y2="473.80668" x2="463.00743" y1="484.80678" x1="158.0048" stroke-opacity="0" stroke="#000000" fill="none"/>
+      <g id="svg_36">
+       <rect transform="rotate(-40 204.513 377.982)" id="svg_5" height="4.39549" width="111.66971" y="375.78468" x="148.67788" stroke-width="0" fill="#ff0099"/>
+       <rect id="svg_6" height="5.66666" width="118.33312" y="410.36237" x="142.439" stroke-width="0" fill="#ff0099"/>
+       <rect transform="rotate(56.5576 157.397 399.447)" stroke="#000000" stroke-opacity="0" id="svg_7" height="3.73036" width="31.25245" y="397.5815" x="141.77079" stroke-width="0" fill="#ff0099"/>
+       <path transform="rotate(-1.21005 196.856 343.529)" id="svg_8" d="m135.85568,341.19585l121.99977,0l0,4.66666l-121.99977,0l0,-4.66666z" opacity="undefined" stroke-opacity="0" stroke-width="0" stroke="#000000" fill="#ff0099"/>
+       <rect id="svg_9" height="2.66666" width="0" y="340.69583" x="192.43891" stroke-opacity="0" stroke-width="0" stroke="#000000" fill="#ff007f"/>
+       <rect transform="rotate(68.419 115.05 315.765)" stroke="null" id="svg_11" height="3.54179" width="60.36345" y="313.99417" x="84.86832" stroke-width="0" fill="#ff0099"/>
+       <rect transform="rotate(-46.4751 155.174 232.984)" stroke="null" id="svg_12" height="5.29919" width="264.62893" y="230.33404" x="22.85972" stroke-width="0" fill="#ff0099"/>
+       <line id="svg_13" y2="219.02938" x2="187.57224" y1="191.6961" x1="126.57235" stroke="null" fill="none"/>
+       <rect stroke="#000000" id="svg_18" height="229.66623" width="5.99999" y="114.82959" x="243.67213" opacity="NaN" stroke-opacity="0" stroke-width="0" fill="#ff0099"/>
+       <path id="svg_23" d="m395.76797,293.60971" opacity="NaN" stroke-opacity="0" stroke-width="0" stroke="#000000" fill="#ff0099"/>
+       <path id="svg_24" d="m372.51812,302.35965" opacity="NaN" stroke-opacity="0" stroke-width="0" stroke="#000000" fill="#ff0099"/>
+       <path id="svg_25" d="m287.1035,337.9704c0.24731,0.24799 175.24614,-64.25158 175.24614,-64.25158c0,0 11.94993,-4.99997 11.94993,-4.99997c0,0 5.74996,-38.74974 5.55263,-38.99772c0.19733,0.24798 19.1972,8.24793 18.99987,7.99995c0.19733,0.24798 8.69727,6.49794 8.49994,6.24995c0.19733,0.24799 8.19728,4.74796 7.99995,4.49997c0.19733,0.24799 4.9473,3.24797 4.9473,3.24797c0,0 12.24992,4.74997 12.24992,4.74997c0,0 23.49984,1.24999 23.30251,1.002c0.19733,0.24799 28.44714,0.74798 28.44714,0.74798c0,0 19.49987,1 19.30253,0.75201c0.19734,0.24799 10.74725,1.24798 10.74725,1.24798c0,0 11.74992,0.5 11.74992,0.5c0,0 13.99991,2.24998 13.75259,2.002c0.24732,0.24798 18.99719,3.74796 18.99719,3.74796c0,0 15.9999,4.74997 15.9999,4.74997c0,0 15.49989,4.99996 15.49989,4.99996c0,0 19.99987,7.99995 19.75255,7.75196c0.24732,0.24799 12.99723,5.24796 12.99723,5.24796c0,0 7.24995,3.49997 7.24995,3.49997c0,0 12.49992,7.49995 12.2526,7.25197c0.24732,0.24798 8.99726,6.24794 8.99726,6.24794c0,0 7.74995,6.74996 7.74995,6.74996c0,0 7.99994,7.24995 7.75262,7.00196c0.24732,0.24799 5.49729,7.99793 5.24997,7.74995c0.24732,0.24798 4.99729,7.99793 4.74996,7.74995c0.24733,0.24798 0.99732,4.24796 0.75,3.99997c0.24732,0.24799 0.24732,3.24797 0,2.99998c0.24732,0.24799 1.33066,4.49796 0.08334,4.24997c0.62366,0.124 0.41466,0.35265 -0.21033,1.20681c-0.625,0.85416 -0.16599,2.50048 -2.20632,4.95982c0.54033,0.87399 -0.71034,1.35264 -1.752,2.72764c-1.04166,1.375 -1.37431,1.97965 -2.33132,2.77233c-1.586,1.24798 -2.58599,2.58129 -2.83331,2.33331c0.24732,0.24798 -1.41926,1.6646 -12.25259,7.99793l-5.66396,2.91867c-6.91933,2.58131 -9.33594,4.08128 -9.58326,3.8333c0.24732,0.24798 -0.75259,0.16462 -13.99991,5.74996c-6.58601,1.74799 -13.75258,4.74795 -13.9999,4.49997c0.24732,0.24798 -18.75255,4.74795 -18.99988,4.49997c0.24733,0.24798 -13.25258,2.74797 -13.4999,2.49998c0.24732,0.24799 -22.25253,4.49796 -22.49985,4.24997c0.24732,0.24799 -21.00254,1.74798 -21.24986,1.49999c0.24732,0.24799 -0.50267,-7.75196 -0.74999,-7.99995c0.24732,0.24799 -15.75258,0.99799 -15.9999,0.75c0.24732,0.24799 -34.50244,-0.50201 -34.74976,-0.75c-13.45967,-1.95933 -15.58543,-2.60567 -20.40829,-0.95985c-4.82286,1.64583 -12.34283,5.58382 -102.59088,5.45982c0.09735,0.24799 -30.90244,6.74795 -30.99979,6.49996c0.09735,0.24799 -35.40241,8.74793 -35.49976,8.49994c0.09735,0.24799 -3.15263,-0.00201 -34.74977,1c0.14731,0.24798 -28.3525,1.49798 -28.3525,1.49798c0,0 -35.24976,0 -36.14706,0.502c-10.60262,0.49799 -14.18585,0.41465 -27.83315,3.16666c-21.68602,1.91466 -21.26921,-1.91868 -21.41652,-2.16666c0.14731,0.24798 -2.60268,-72.00153 -2.60268,-72.00153c0,0 3.64997,-1.99999 3.59999,-2.74998l19.37621,-0.62399l19.37621,-0.62399z" opacity="NaN" stroke-opacity="0" stroke-width="0" stroke="#000000" fill="#ff0099"/>
+       <ellipse stroke="#000000" ry="70" rx="70" id="svg_26" cy="385.36367" cx="91.47754" stroke-opacity="0" stroke-width="0" fill="#ff0099"/>
+       <ellipse ry="70" rx="70" id="svg_27" cy="385.36367" cx="524.64708" stroke-opacity="0" stroke-width="0" stroke="#000000" fill="#ff0099"/>
+       <line id="svg_30" y2="453.17012" x2="360.97987" y1="485.1704" x1="363.97989" stroke-opacity="0" stroke="#000000" fill="none"/>
+       <rect transform="rotate(15.6375 212.807 218.319)" stroke="#000000" id="svg_31" height="3.79279" width="74.52289" y="216.42219" x="175.54549" stroke-opacity="0" stroke-width="0" fill="#ff0099"/>
+       <path stroke="#000000" id="svg_33" d="m117.63242,269.08877l127.66479,0l0,5.33326l-127.66479,0l0,-5.33326z" opacity="undefined" stroke-opacity="0" stroke-width="0" fill="#ff0099"/>
+      </g>
+     </g>
+    </svg>
+
+    <div class="car-glow"></div>
+  </div>
+
+  <div class="info-containers" style="max-width: 950px; display: flex; flex-wrap: wrap; gap: 20px; width: 100%;">
+    
+    <div class="info-box info-box-black" style="flex: 1; min-width: 300px;">
+      <div class="info-title" style="color: var(--pink);">Especificações conceituais</div>
+      <ul class="info-text" style="list-style-type: square; padding-left: 20px; font-family: 'Oswald', sans-serif;">
+        <li style="margin-bottom: 6px;">Categoria: FSAE Electric (EV)</li>
+        <li style="margin-bottom: 6px;">Propulsão: Motor elétrico com inversor de frequência</li>
+        <li style="margin-bottom: 6px;">Acumulador: Sistema de baterias de alta tensão</li>
+        <li style="margin-bottom: 6px;">Transmissão: Direta ou por corrente</li>
+        <li style="margin-bottom: 6px;">Chassi: Tubular em aço SAE 4130</li>
+        <li style="margin-bottom: 6px;">Identidade visual: Preto e Rosa</li>
+      </ul>
+    </div>
+
+    <div class="info-box info-box-pink" style="flex: 1; min-width: 300px;">
+      <div class="info-title" style="color: var(--black);">Pilares do projeto</div>
+      <ul class="info-text" style="list-style-type: square; padding-left: 20px; font-family: 'Oswald', sans-serif; color: var(--black);">
+        <li style="margin-bottom: 8px;">Eficiência energética como prioridade de desempenho</li>
+        <li style="margin-bottom: 8px;">Segurança como requisito não negociável</li>
+        <li style="margin-bottom: 8px;">Simplicidade para viabilizar a construção no prazo</li>
+        <li style="margin-bottom: 8px;">Projeto baseado no Addendum FSAEB 2026</li>
+      </ul>
+    </div>
+
+  </div>
+<div class="marquee-divider">
+  <div class="marquee-inner">
+    HERMES · ELECTRIC FORMULA CAR · ZERO EMISSIONS · HIGH PERFORMANCE · VOLTARE RACING · VOLTARE · ELECTRIC FORMULA CAR · ZERO EMISSIONS · HIGH PERFORMANCE · VOLTARE RACING · HERMES · ELECTRIC FORMULA CAR ·
+  </div>
+</div>
+
+<section class="palette-section">
+  <div class="section-label">
+    <svg class="inline-bolt" style="width:14px; height:20px;" viewBox="0 0 24 42"><use href="#svg-bolt"/></svg> 
+    Brand Colors 
+    <svg class="inline-bolt" style="width:14px; height:20px;" viewBox="0 0 24 42"><use href="#svg-bolt"/></svg>
+  </div>
+  <div class="section-title">COLOR<br><span class="acc">PALETTE</span></div>
+
+  <div class="palette-grid">
+    <div class="swatch" style="background:#FF0099; color:#0A0A0A;">
+      <svg class="swatch-bolt-bg" viewBox="0 0 24 42"><use href="#svg-bolt"/></svg>
+      <div class="swatch-name">PURE PINK</div>
+      <div class="swatch-hex">#FF0099</div>
+    </div>
+    <div class="swatch" style="background:#0A0A0A; color:#F5F5F0; border: 2px solid #222;">
+      <svg class="swatch-bolt-bg" viewBox="0 0 24 42"><use href="#svg-bolt"/></svg>
+      <div class="swatch-name">VOID BLACK</div>
+      <div class="swatch-hex">#0A0A0A</div>
+    </div>
+    <div class="swatch" style="background:#F5F5F0; color:#0A0A0A;">
+      <svg class="swatch-bolt-bg" viewBox="0 0 24 42"><use href="#svg-bolt"/></svg>
+      <div class="swatch-name">STAR WHITE</div>
+      <div class="swatch-hex">#F5F5F0</div>
+    </div>
+    <div class="swatch" style="background:#FF44BB; color:#0A0A0A;">
+      <svg class="swatch-bolt-bg" viewBox="0 0 24 42"><use href="#svg-bolt"/></svg>
+      <div class="swatch-name">LIGHT PINK</div>
+      <div class="swatch-hex">#FF44BB</div>
+    </div>
+    <div class="swatch" style="background:#FFE000; color:#0A0A0A;">
+      <svg class="swatch-bolt-bg" viewBox="0 0 24 42"><use href="#svg-bolt"/></svg>
+      <div class="swatch-name">VOLTAGE YELLOW</div>
+      <div class="swatch-hex">#FFE000</div>
+    </div>
+  </div>
+</section>
+
+<section class="type-section">
+  <div class="section-label">
+    <svg class="inline-bolt" style="width:14px; height:20px;" viewBox="0 0 24 42"><use href="#svg-bolt"/></svg> 
+    Typography 
+    <svg class="inline-bolt" style="width:14px; height:20px;" viewBox="0 0 24 42"><use href="#svg-bolt"/></svg>
+  </div>
+  <div class="section-title">TYPE<br><span class="acc">SYSTEM</span></div>
+
+  <div class="type-samples">
+    <div class="type-sample">
+      <div class="type-label">Display — Bebas Neue</div>
+      <div style="font-family:'Bebas Neue'; font-size: clamp(2.5rem, 8vw, 5rem); color:var(--white); text-shadow: 3px 3px 0 var(--pink);">VOLTARE RACING</div>
+    </div>
+    <div class="type-sample">
+      <div class="type-label">Accent — Permanent Marker</div>
+      <div style="font-family:'Permanent Marker'; font-size: clamp(1.2rem, 4vw, 2rem); color:var(--pink); display:flex; align-items:center; gap:10px;">
+        your favorite race team 
+        <svg class="inline-bolt" style="width:20px; height:28px;" viewBox="0 0 24 42"><use href="#svg-bolt"/></svg>
+      </div>
+    </div>
+    <div class="type-sample">
+      <div class="type-label">UI / Labels — Oswald Bold</div>
+      <div style="font-family:'Oswald'; font-size: clamp(0.9rem, 2.5vw, 1.3rem); letter-spacing: 6px; color:#888; text-transform: uppercase;">FORMULA SAE · ELECTRIC DIVISION · 2026</div>
+    </div>
+  </div>
+</section>
+
+<section class="sticker-section">
+  <div class="section-label">
+    <svg class="inline-bolt" style="width:14px; height:20px;" viewBox="0 0 24 42"><use href="#svg-bolt"/></svg> 
+    Stickers & Badges 
+    <svg class="inline-bolt" style="width:14px; height:20px;" viewBox="0 0 24 42"><use href="#svg-bolt"/></svg>
+  </div>
+  <div class="section-title">BRAND<br><span class="acc">ELEMENTS</span></div>
+
+  <div class="stickers-grid">
+    <div class="sticker sticker-star" style="display:flex;">
+      <span style="font-size:0.85rem; text-align:center; line-height:1.2; padding: 0 20px; margin-top:30px;">VOLTARE</span>
+    </div>
+
+    <div class="sticker sticker-rect">
+      <svg class="inline-bolt" style="width:14px; height:20px;" viewBox="0 0 24 42"><use href="#svg-bolt"/></svg> 
+      ELECTRIC 
+      <svg class="inline-bolt" style="width:14px; height:20px;" viewBox="0 0 24 42"><use href="#svg-bolt"/></svg>
+    </div>
+    <div class="sticker sticker-rect inv">FORMULA SAE</div>
+    <div class="sticker sticker-rect" style="text-align:center;">RAISED ON<br>HIGH VOLTAGE</div>
+
+    <div class="sticker sticker-round" style="display:flex;">
+      <svg class="round-bolt" viewBox="0 0 24 42"><use href="#svg-bolt"/></svg>
+      <span>SF-01</span>
+      <span style="font-size:0.6rem; opacity:0.6;">VOLTARE</span>
+    </div>
+
+    <div class="sticker sticker-rect inv">
+      <svg class="inline-bolt" style="width:14px; height:20px; fill:var(--black);" viewBox="0 0 24 42"><use href="#svg-bolt"/></svg> 
+      EV RACING 
+      <svg class="inline-bolt" style="width:14px; height:20px; fill:var(--black);" viewBox="0 0 24 42"><use href="#svg-bolt"/></svg>
+    </div>
+
+    <div style="background: var(--pink); padding: 16px 24px; transform: rotate(3deg); box-shadow: 5px 5px 0 var(--white);">
+      <div style="font-family:'Bebas Neue'; font-size:2rem; color:var(--black); line-height:0.9; letter-spacing:2px;">YOUR<br><span style="font-size:1rem; letter-spacing:6px;">FAVORITE</span><br>RACE TEAM</div>
+    </div>
+  </div>
+</section>
+
+<div class="ticker-wrap" style="background: var(--black); border-color: var(--pink);">
+  <div class="ticker-inner ticker-slow" style="color:var(--pink);">
+    VOLTARE RACING <svg class="ticker-bolt" viewBox="0 0 24 42"><use href="#svg-bolt"/></svg> 
+    HERMES <svg class="ticker-bolt" viewBox="0 0 24 42"><use href="#svg-bolt"/></svg> 
+    FORMULA SAE ELECTRIC <svg class="ticker-bolt" viewBox="0 0 24 42"><use href="#svg-bolt"/></svg> 
+    2026 <svg class="ticker-bolt" viewBox="0 0 24 42"><use href="#svg-bolt"/></svg> 
+    HIGH VOLTAGE <svg class="ticker-bolt" viewBox="0 0 24 42"><use href="#svg-bolt"/></svg> 
+    YOUR FAVORITE RACE TEAM <svg class="ticker-bolt" viewBox="0 0 24 42"><use href="#svg-bolt"/></svg>
+    
+    VOLTARE RACING <svg class="ticker-bolt" viewBox="0 0 24 42"><use href="#svg-bolt"/></svg> 
+    HERMES <svg class="ticker-bolt" viewBox="0 0 24 42"><use href="#svg-bolt"/></svg> 
+    FORMULA SAE ELECTRIC <svg class="ticker-bolt" viewBox="0 0 24 42"><use href="#svg-bolt"/></svg> 
+    2026 <svg class="ticker-bolt" viewBox="0 0 24 42"><use href="#svg-bolt"/></svg> 
+    HIGH VOLTAGE <svg class="ticker-bolt" viewBox="0 0 24 42"><use href="#svg-bolt"/></svg> 
+    YOUR FAVORITE RACE TEAM <svg class="ticker-bolt" viewBox="0 0 24 42"><use href="#svg-bolt"/></svg>
+
+    VOLTARE RACING <svg class="ticker-bolt" viewBox="0 0 24 42"><use href="#svg-bolt"/></svg> 
+    HERMES <svg class="ticker-bolt" viewBox="0 0 24 42"><use href="#svg-bolt"/></svg> 
+    FORMULA SAE ELECTRIC <svg class="ticker-bolt" viewBox="0 0 24 42"><use href="#svg-bolt"/></svg> 
+    2026 <svg class="ticker-bolt" viewBox="0 0 24 42"><use href="#svg-bolt"/></svg> 
+    HIGH VOLTAGE <svg class="ticker-bolt" viewBox="0 0 24 42"><use href="#svg-bolt"/></svg> 
+    YOUR FAVORITE RACE TEAM <svg class="ticker-bolt" viewBox="0 0 24 42"><use href="#svg-bolt"/></svg>
+
+    VOLTARE RACING <svg class="ticker-bolt" viewBox="0 0 24 42"><use href="#svg-bolt"/></svg> 
+    HERMES <svg class="ticker-bolt" viewBox="0 0 24 42"><use href="#svg-bolt"/></svg> 
+    FORMULA SAE ELECTRIC <svg class="ticker-bolt" viewBox="0 0 24 42"><use href="#svg-bolt"/></svg> 
+    2026 <svg class="ticker-bolt" viewBox="0 0 24 42"><use href="#svg-bolt"/></svg> 
+    HIGH VOLTAGE <svg class="ticker-bolt" viewBox="0 0 24 42"><use href="#svg-bolt"/></svg> 
+    YOUR FAVORITE RACE TEAM <svg class="ticker-bolt" viewBox="0 0 24 42"><use href="#svg-bolt"/></svg>
+  </div>
+</div>
+</body>
+</html>
